@@ -1,0 +1,23 @@
+parameters:
+    bangpound_documentcloud.binary_driver.docsplit.class: Bangpound\Bundle\DocumentCloudBundle\BinaryDriver\DocsplitDriver
+    bangpound_documentcloud.binary_driver.graphicsmagick.class: Bangpound\Bundle\DocumentCloudBundle\BinaryDriver\GraphicsmagickDriver
+    bangpound_documentcloud.binary_driver.pdftotext.class: Bangpound\Bundle\DocumentCloudBundle\BinaryDriver\PdftotextDriver
+
+services:
+    bangpound_documentcloud.binary_driver.docsplit:
+        class: %bangpound_documentcloud.binary_driver.docsplit.class%
+        factory_class: %bangpound_documentcloud.binary_driver.docsplit.class%
+        factory_method: load
+        arguments: [ 'docsplit', @logger ]
+
+    bangpound_documentcloud.binary_driver.graphicsmagick:
+        class: %bangpound_documentcloud.binary_driver.graphicsmagick.class%
+        factory_class: %bangpound_documentcloud.binary_driver.graphicsmagick.class%
+        factory_method: load
+        arguments: [ 'gm', @logger ]
+
+    bangpound_documentcloud.binary_driver.pdftotext:
+        class: %bangpound_documentcloud.binary_driver.pdftotext.class%
+        factory_class: %bangpound_documentcloud.binary_driver.pdftotext.class%
+        factory_method: load
+        arguments: [ 'pdftotext', @logger ]

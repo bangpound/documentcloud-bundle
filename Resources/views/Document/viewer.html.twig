@@ -1,0 +1,91 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {% stylesheets
+        'vendor/document-viewer/public/stylesheets/DV/components/reset.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/structure.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/ui.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/annotations.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/pages.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/ui-header.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/ui-footer.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/ui-menu.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/ui-navigation.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/ui-search.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/ui-text.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/ui-zoom.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/view-annotations.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/view-document.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/view-search.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/view-text.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/view-thumbnails.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/unsupported.css'
+        'vendor/document-viewer/public/stylesheets/DV/components/minimode.css'
+        'vendor/document-viewer/public/stylesheets/DV/themes/plain.css'
+     filter='cssrewrite' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+    {% stylesheets
+        'vendor/document-viewer/public/stylesheets/DV/print.css'
+    filter='cssrewrite' %}
+    <link href="{{ asset_url }}" media="print" rel="stylesheet" type="text/css" />
+    {% endstylesheets %}
+
+    <style>
+        body { margin: 0; }
+        .DV-logo { display: none; }
+        .navbar-header { display: none; }
+        .navbar-collapse { display: none; }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        'vendor/document-viewer/public/javascripts/DV/vendor/jquery-1.5.1.js'
+        'vendor/document-viewer/public/javascripts/DV/vendor/jquery-ui-1.8.1.custom.min.js'
+        'vendor/document-viewer/public/javascripts/DV/vendor/underscore.js'
+        'vendor/document-viewer/public/javascripts/DV/vendor/jquery.acceptInput.js'
+        'vendor/document-viewer/public/javascripts/DV/vendor/jquery.placeholder.js'
+        'vendor/document-viewer/public/javascripts/DV/lib/initializer.js'
+        'vendor/document-viewer/public/javascripts/DV/lib/history.js'
+        'vendor/document-viewer/public/javascripts/DV/lib/annotation.js'
+        'vendor/document-viewer/public/javascripts/DV/lib/drag_reporter.js'
+        'vendor/document-viewer/public/javascripts/DV/lib/elements.js'
+        'vendor/document-viewer/public/javascripts/DV/lib/page.js'
+        'vendor/document-viewer/public/javascripts/DV/lib/page_set.js'
+        'vendor/document-viewer/public/javascripts/DV/lib/thumbnails.js'
+        'vendor/document-viewer/public/javascripts/DV/schema/schema.js'
+        'vendor/document-viewer/public/javascripts/DV/elements/elements.js'
+        'vendor/document-viewer/public/javascripts/DV/models/annotation.js'
+        'vendor/document-viewer/public/javascripts/DV/models/chapter.js'
+        'vendor/document-viewer/public/javascripts/DV/models/document.js'
+        'vendor/document-viewer/public/javascripts/DV/models/page.js'
+        'vendor/document-viewer/public/javascripts/DV/events/events.js'
+        'vendor/document-viewer/public/javascripts/DV/events/ViewAnnotation.js'
+        'vendor/document-viewer/public/javascripts/DV/events/ViewDocument.js'
+        'vendor/document-viewer/public/javascripts/DV/events/ViewSearch.js'
+        'vendor/document-viewer/public/javascripts/DV/events/ViewText.js'
+        'vendor/document-viewer/public/javascripts/DV/events/ViewThumbnails.js'
+        'vendor/document-viewer/public/javascripts/DV/events/history.js'
+        'vendor/document-viewer/public/javascripts/DV/events/navigation.js'
+        'vendor/document-viewer/public/javascripts/DV/helpers/helpers.js'
+        'vendor/document-viewer/public/javascripts/DV/helpers/annotations.js'
+        'vendor/document-viewer/public/javascripts/DV/helpers/construction.js'
+        'vendor/document-viewer/public/javascripts/DV/helpers/editor.js'
+        'vendor/document-viewer/public/javascripts/DV/helpers/navigation.js'
+        'vendor/document-viewer/public/javascripts/DV/helpers/search.js'
+        'vendor/document-viewer/public/javascripts/DV/states/states.js'
+        'vendor/document-viewer/public/javascripts/DV/controllers/document_viewer.js'
+        'vendor/document-viewer/public/javascripts/DV/controllers/api.js'
+        'vendor/document-viewer/public/assets/templates.js'
+    %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        window.currentDocument = DV.load('{{ url('bangpound_documentcloud_viewer_document', {'id': document.id, '_format': 'json' }) }}', {container: '#document-viewer'});
+    </script>
+{% endblock %}
+
+{% block body %}
+<div id="document-viewer"></div>
+{% endblock %}

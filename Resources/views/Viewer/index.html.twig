@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>Document Viewer</h1>
+    </div>
+    {% for entity in entities %}
+    {% if cycle(range(1,4), loop.index0) == 1 %}
+        <div class="row">
+    {% endif %}
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <img src="{{ path('bangpound_documentcloud_document_page_image', { 'size': 'small', 'page': 1, 'id': entity.id, '_format': 'png' }) }}" alt="{{ entity.name }}">
+                <div class="caption">
+                    <h3>{{ entity.name }}</h3>
+                    <p><a href="{{ path('bangpound_documentcloud_viewer', { 'id' : entity.id, '_format': 'html' }) }}" class="btn btn-primary">Read</a></p>
+                </div>
+            </div>
+        </div>
+    {% if (cycle(range(1,4), loop.index0) == 4) or (loop.last) %}
+        </div>
+    {% endif %}
+    {% endfor %}
+{% endblock %}

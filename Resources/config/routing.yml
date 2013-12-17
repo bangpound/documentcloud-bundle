@@ -1,0 +1,33 @@
+document:
+    resource: "@BangpoundDocumentCloudBundle/Controller/DocumentController.php"
+    prefix:   /
+    type:     annotation
+
+bangpound_documentcloud_viewer:
+    pattern:  /{id}.{_format}
+    defaults: { _controller: BangpoundDocumentCloudBundle:Viewer:viewer }
+    requirements:
+        _format: html
+
+bangpound_documentcloud_viewer_document:
+    pattern:  /{id}.{_format}
+    defaults: { _controller: BangpoundDocumentCloudBundle:Viewer:document }
+    requirements:
+        _format: json
+
+bangpound_documentcloud_viewer_page_text:
+    pattern:  /{id}/{page}.{_format}
+    defaults: { _controller: BangpoundDocumentCloudBundle:Viewer:pageText }
+    requirements:
+        _format: txt
+
+bangpound_documentcloud_viewer_page_image:
+    pattern:  /{id}/{page}/{size}.{_format}
+    defaults: { _controller: BangpoundDocumentCloudBundle:Viewer:pageImage }
+    requirements:
+        _format: png|gif|jpg
+        size: small|normal|large|{size}
+
+bangpound_documentcloud_viewer_search:
+    pattern: /{id}/search.{_format}
+    defaults: { _controller: BangpoundDocumentCloudBundle:Viewer:search }
