@@ -11,12 +11,24 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Document extends BaseDocument
 {
+    /**
+     * @var
+     */
     private $id;
 
+    /**
+     * @var
+     */
     private $temp;
 
+    /**
+     * @var
+     */
     private $name;
 
+    /**
+     * @var
+     */
     private $path;
 
     /**
@@ -24,6 +36,9 @@ class Document extends BaseDocument
      */
     private $file;
 
+    /**
+     * @return null|string
+     */
     public function getAbsolutePath()
     {
         return null === $this->path
@@ -31,6 +46,9 @@ class Document extends BaseDocument
             : $this->getUploadRootDir().'/'.$this->path;
     }
 
+    /**
+     * @return null|string
+     */
     public function getWebPath()
     {
         return null === $this->path
@@ -38,6 +56,9 @@ class Document extends BaseDocument
             : $this->getUploadDir().'/'.$this->path;
     }
 
+    /**
+     * @return string
+     */
     protected function getUploadRootDir()
     {
         // the absolute directory path where uploaded
@@ -45,6 +66,9 @@ class Document extends BaseDocument
         return __DIR__.'/../../../../../../../web/'.$this->getUploadDir();
     }
 
+    /**
+     * @return string
+     */
     protected function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
