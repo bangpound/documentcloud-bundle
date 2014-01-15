@@ -189,4 +189,9 @@ class Document extends BaseDocument
             unlink($file);
         }
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
