@@ -19,15 +19,4 @@ class DocsplitDriver extends AbstractBinary
     {
         return 'docsplit';
     }
-
-    public function command($command, $bypassErrors = false, $listeners = null)
-    {
-        if (!is_array($command)) {
-            $command = array($command);
-        }
-
-        $process = $this->factory->create($command);
-
-        return $this->run($process, $bypassErrors, $listeners);
-    }
 }
