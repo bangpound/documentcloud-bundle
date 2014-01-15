@@ -5,7 +5,6 @@ namespace Bangpound\Bundle\DocumentCloudBundle\Controller;
 use Bangpound\Bundle\DocumentCloudBundle\Entity\Document;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Sensio;
 use Bangpound\Bundle\DocumentCloudBundle\Form\DocumentType;
 
@@ -38,7 +37,8 @@ class DocumentController extends Controller
 
     /**
      * @param  Document $document
-     * @return array
+     * @return mixed
+     *
      * @Sensio\Route("/{id}/view", name="document_view", requirements={"id" = "\d+"})
      * @Sensio\Template()
      */
@@ -256,6 +256,6 @@ class DocumentController extends Controller
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
-            ;
+        ;
     }
 }
