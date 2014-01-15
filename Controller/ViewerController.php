@@ -76,6 +76,11 @@ class ViewerController extends Controller
 
         $builder = $driver->getProcessBuilderFactory();
         $process = $builder->create(array('-raw', $document->getAbsolutePath(), '-'));
+        $process->setEnv(
+            array(
+                'PATH' => getenv('PATH'),
+            )
+        );
         $process->run();
 
         if (!$process->isSuccessful()) {
@@ -115,6 +120,11 @@ class ViewerController extends Controller
 
         $builder = $driver->getProcessBuilderFactory();
         $process = $builder->create($arguments);
+        $process->setEnv(
+            array(
+                'PATH' => getenv('PATH'),
+            )
+        );
         $process->run();
 
         if (!$process->isSuccessful()) {
