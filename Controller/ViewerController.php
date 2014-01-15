@@ -9,6 +9,7 @@ use Bangpound\Bundle\DocumentCloudBundle\Model\SearchResult;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class ViewerController
@@ -25,16 +26,14 @@ class ViewerController extends Controller
         $id = $document->getId();
         $pathname = $document->getAbsolutePath();
 
-        $driver = $this->get('bangpound_documentcloud.binary_driver.docsplit');
+        $driver = $this->get('bangpound_documentcloud.binary_driver.pdfinfo');
+        $info =  $driver->command(array($pathname));
+        $info = array_change_key_case(Yaml::parse($info));
 
-        $length = $driver->command(array('length', $pathname));
-        $title = trim($driver->command(array('title', $pathname)));
-        $description = trim($driver->command(array('subject', $pathname)));
-
-        $document->setTitle($title);
-        $document->setDescription($description);
-        $document->setPages((int) $length);
-        $document->setId(rawurlencode($id));
+        $document->setTitle($info['title']);
+        $document->setDescription($info['subject'])
+        $document->setPages((int) $info['pages']);
+        $document->setId(rawurlencode($document->getId()));
 
         $text_route = 'bangpound_documentcloud_viewer_page_text';
         $image_route = 'bangpound_documentcloud_viewer_page_image';
