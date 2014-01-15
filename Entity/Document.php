@@ -63,7 +63,7 @@ class Document extends BaseDocument
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../../../../web/'.$this->getUploadDir();
+        return realpath(__DIR__.'/../../../../../../../web/'.$this->getUploadDir());
     }
 
     /**

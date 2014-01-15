@@ -102,7 +102,7 @@ class ViewerController extends Controller
         $sizes = array('small' => 180, 'normal' => 700, 'large' => 1000);
         $width = $sizes[$size];
 
-        $destination = $this->container->getParameter('kernel.root_dir') .'/../web'. $request->getPathInfo();
+        $destination = realpath($this->container->getParameter('kernel.root_dir') .'/../web'). $request->getPathInfo();
 
         $driver = $this->get('bangpound_documentcloud.binary_driver.graphicsmagick');
         $filesystem = $this->get('filesystem');
