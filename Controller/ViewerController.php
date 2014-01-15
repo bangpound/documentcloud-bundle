@@ -109,6 +109,7 @@ class ViewerController extends Controller
 
         $destination = realpath($this->container->getParameter('kernel.root_dir') .'/../web'). $request->getPathInfo();
 
+        /** @var \Bangpound\Bundle\DocumentCloudBundle\BinaryDriver\GraphicsmagickDriver $driver */
         $driver = $this->get('bangpound_documentcloud.binary_driver.graphicsmagick');
         $filesystem = $this->get('filesystem');
         $filesystem->mkdir(dirname($destination));
