@@ -99,7 +99,7 @@ class ViewerController extends Controller
      */
     public function pageImageAction(Request $request, Document $document, $page, $size)
     {
-        $sizes = ['small' => 180, 'normal' => 700, 'large' => 1000];
+        $sizes = array('small' => 180, 'normal' => 700, 'large' => 1000);
         $width = $sizes[$size];
 
         $destination = $this->container->getParameter('kernel.root_dir') .'/../web'. $request->getPathInfo();
@@ -137,30 +137,30 @@ class ViewerController extends Controller
 
         $document = $request->attributes->get('document');
 
-        $params = [
+        $params = array(
             'index' => 'investments',
             'type' => 'page',
-            'body' => [
-                'query' => [
-                    'bool' => [
-                        'must' => [
-                            [
-                                'match' => [
+            'body' => array(
+                'query' => array(
+                    'bool' => array(
+                        'must' => array(
+                            array(
+                                'match' => array(
                                     '_parent' => $document['_id'],
-                                ],
-                            ],
-                            [
-                                'query_string' => [
+                                ),
+                            ),
+                            array(
+                                'query_string' => array(
                                     'query' => $query_string,
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
                 'size' => pow(2,16),
-                'fields' => ['page'],
-            ],
-        ];
+                'fields' => array('page'),
+            ),
+        );
 
         $ret = $client->search($params);
 
