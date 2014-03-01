@@ -31,7 +31,7 @@ class ViewerController extends Controller
         $info = array_change_key_case(Yaml::parse($info));
 
         $document->setTitle($info['title']);
-        $document->setDescription($info['subject']);
+        $document->setDescription(isset($info['subject']) ? $info['subject'] : '');
         $document->setPages((int) $info['pages']);
         $document->setId(rawurlencode($document->getId()));
 
