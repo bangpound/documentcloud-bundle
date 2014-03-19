@@ -7,12 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Sensio;
 use Bangpound\Bundle\DocumentCloudBundle\Form\DocumentType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Document controller.
  *
  * Class DocumentController
  * @package Bangpound\Bundle\DocumentCloudBundle\Controller
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class DocumentController extends Controller
 {
