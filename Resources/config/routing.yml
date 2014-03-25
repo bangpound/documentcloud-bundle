@@ -1,8 +1,3 @@
-document:
-    resource: "@BangpoundDocumentCloudBundle/Controller/DocumentController.php"
-    prefix:   /
-    type:     annotation
-
 bangpound_documentcloud_viewer:
     pattern:  /{id}.{_format}
     defaults: { _controller: BangpoundDocumentCloudBundle:Viewer:viewer }
