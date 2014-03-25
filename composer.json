@@ -2,6 +2,7 @@
     "name": "bangpound/documentcloud-bundle",
     "description": "DocumentCloud viewer for Symfony2 applications",
     "require": {
+        "php": ">=5.4.0",
         "alchemy/binary-driver": "~1.5.0"
     },
     "license": "MIT",
